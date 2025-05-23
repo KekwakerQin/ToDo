@@ -1,10 +1,3 @@
-//
-//  ToDoUITests.swift
-//  ToDoUITests
-//
-//  Created by Qin Chingis on 5/23/25.
-//
-
 import XCTest
 
 final class ToDoUITests: XCTestCase {

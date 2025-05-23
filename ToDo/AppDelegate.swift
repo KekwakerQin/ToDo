@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  ToDo
-//
-//  Created by Qin Chingis on 5/23/25.
-//
-
 import UIKit
 import CoreData
 
