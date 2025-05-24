@@ -5,7 +5,8 @@ extension UITableView {
         let tv = UITableView()
         
         tv.translatesAutoresizingMaskIntoConstraints = false
-
+        tv.backgroundColor = UIColor(named: "BackgroundColor")
+        
         return tv
     }
 }
@@ -43,6 +44,7 @@ class TaskCell: UITableViewCell {
         
         contentView.addSubview(checkBox)
         contentView.addSubview(stack)
+        contentView.backgroundColor = UIColor(named: "BackgroundColor")
     }
     
     private func setupConstraints() {
@@ -61,18 +63,19 @@ class TaskCell: UITableViewCell {
     
     func configure(with task: Task) {
         titleLabel.text = task.title
-        noteLabel.text = task.note
+        noteLabel.text = task.todo
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yy"
-        dateLabel.text = formatter.string(from: task.date)
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "dd/MM/yy"
+//        dateLabel.text = formatter.string(from: task.date)
+        dateLabel.text = task.date
         
-        if task.isDone {
+        if task.completed {
             checkBox.image = UIImage(systemName: "checkmark.circle.fill")
             checkBox.tintColor = .systemYellow
             
             let attributedTitle = NSAttributedString(string: task.title, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue, .foregroundColor: UIColor.gray])
-            let attributedNote = NSAttributedString(string: task.note ?? "", attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue, .foregroundColor: UIColor.gray])
+            let attributedNote = NSAttributedString(string: task.todo ?? "", attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue, .foregroundColor: UIColor.gray])
             titleLabel.attributedText = attributedTitle
             noteLabel.attributedText = attributedNote
             dateLabel.textColor = .gray
@@ -83,7 +86,7 @@ class TaskCell: UITableViewCell {
             titleLabel.attributedText = nil
             noteLabel.attributedText = nil
             titleLabel.text = task.title
-            noteLabel.text = task.note
+            noteLabel.text = task.todo
             dateLabel.textColor = .lightGray
         }
     }

@@ -1,0 +1,187 @@
+{
+  "todos": [
+    {
+      "title": "Surprise a loved one with a kind gesture",
+      "todo": "Do something nice for someone you care about",
+      "completed": false,
+      "date": "2024-11-05"
+    },
+    {
+      "title": "Recite a classic poem",
+      "todo": "Memorize a poem",
+      "completed": true,
+      "date": "2023-07-21"
+    },
+    {
+      "title": "Watch an old timeless film",
+      "todo": "Watch a classic movie",
+      "completed": true,
+      "date": "2024-02-11"
+    },
+    {
+      "title": "Documentary viewing session",
+      "todo": "Watch a documentary",
+      "completed": false,
+      "date": "2025-01-09"
+    },
+    {
+      "title": "Explore cryptocurrency investment",
+      "todo": "Invest in cryptocurrency",
+      "completed": false,
+      "date": "2024-12-30"
+    },
+    {
+      "title": "Contribute to open source",
+      "todo": "Contribute code or a monetary donation to an open-source software project",
+      "completed": false,
+      "date": "2023-06-15"
+    },
+    {
+      "title": "Master the Rubik's cube",
+      "todo": "Solve a Rubik's cube",
+      "completed": true,
+      "date": "2024-08-19"
+    },
+    {
+      "title": "Bake pastries for neighbors",
+      "todo": "Bake pastries for yourself and neighbor",
+      "completed": true,
+      "date": "2024-10-02"
+    },
+    {
+      "title": "Attend a Broadway show",
+      "todo": "Go see a Broadway production",
+      "completed": false,
+      "date": "2023-09-27"
+    },
+    {
+      "title": "Write gratitude letter",
+      "todo": "Write a thank you letter to an influential person in your life",
+      "completed": true,
+      "date": "2024-04-05"
+    },
+    {
+      "title": "Host a game night",
+      "todo": "Invite some friends over for a game night",
+      "completed": false,
+      "date": "2025-03-11"
+    },
+    {
+      "title": "Organize a football scrimmage",
+      "todo": "Have a football scrimmage with some friends",
+      "completed": false,
+      "date": "2024-06-23"
+    },
+    {
+      "title": "Reconnect with old friend",
+      "todo": "Text a friend you haven't talked to in a long time",
+      "completed": true,
+      "date": "2023-11-18"
+    },
+    {
+      "title": "Organize the pantry",
+      "todo": "Organize pantry",
+      "completed": false,
+      "date": "2025-05-04"
+    },
+    {
+      "title": "Buy new home decor",
+      "todo": "Buy a new house decoration",
+      "completed": true,
+      "date": "2024-03-15"
+    },
+    {
+      "title": "Plan dream vacation",
+      "todo": "Plan a vacation you've always wanted to take",
+      "completed": true,
+      "date": "2024-12-01"
+    },
+    {
+      "title": "Clean the car thoroughly",
+      "todo": "Clean out car",
+      "completed": false,
+      "date": "2023-08-07"
+    },
+    {
+      "title": "Draw and color mandala art",
+      "todo": "Draw and color a Mandala",
+      "completed": true,
+      "date": "2024-01-29"
+    },
+    {
+      "title": "Compile favorite recipes",
+      "todo": "Create a cookbook with favorite recipes",
+      "completed": true,
+      "date": "2023-05-10"
+    },
+    {
+      "title": "Bake pie with friends",
+      "todo": "Bake a pie with some friends",
+      "completed": false,
+      "date": "2024-07-14"
+    },
+    {
+      "title": "Start a compost pile",
+      "todo": "Create a compost pile",
+      "completed": false,
+      "date": "2023-12-20"
+    },
+    {
+      "title": "Go hiking at local park",
+      "todo": "Take a hike at a local park",
+      "completed": true,
+      "date": "2024-09-09"
+    },
+    {
+      "title": "Take a class of interest",
+      "todo": "Take a class at local community center that interests you",
+      "completed": true,
+      "date": "2023-04-03"
+    },
+    {
+      "title": "Research a new topic",
+      "todo": "Research a topic interested in",
+      "completed": true,
+      "date": "2024-05-17"
+    },
+    {
+      "title": "Plan trip abroad",
+      "todo": "Plan a trip to another country",
+      "completed": false,
+      "date": "2025-02-21"
+    },
+    {
+      "title": "Improve typing skills",
+      "todo": "Improve touch typing",
+      "completed": false,
+      "date": "2024-11-11"
+    },
+    {
+      "title": "Learn Express.js framework",
+      "todo": "Learn Express.js",
+      "completed": false,
+      "date": "2023-07-06"
+    },
+    {
+      "title": "Practice calligraphy",
+      "todo": "Learn calligraphy",
+      "completed": false,
+      "date": "2024-01-05"
+    },
+    {
+      "title": "Arrange photo session with friends",
+      "todo": "Have a photo session with some friends",
+      "completed": true,
+      "date": "2024-08-31"
+    },
+    {
+      "title": "Go to the gym regularly",
+      "todo": "Go to the gym",
+      "completed": true,
+      "date": "2023-10-19"
+    }
+  ],
+  "total": 254,
+  "skip": 0,
+  "limit": 30
+}

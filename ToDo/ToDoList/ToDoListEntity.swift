@@ -1,9 +1,14 @@
 import Foundation
-struct Task {
+
+struct TaskList: Decodable {
+    let todos: [Task]
+}
+
+struct Task: Decodable {
     let title: String
-    let note: String?
-    let date: Date
-    var isDone: Bool
+    let todo: String?
+    var completed: Bool
+    let date: String
 }
 
 

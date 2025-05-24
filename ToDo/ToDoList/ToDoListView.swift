@@ -1,23 +1,26 @@
 import UIKit
 
+protocol ToDoListViewProtocol: AnyObject {
+    func showTasks(_ tasks: [Task]?)
+}
+
 class ToDoListView: UIViewController {
     
     // MARK: - Components
     
+    var presenter: ToDoListPresenterProtocol?
+    
     private let searchBar = UISearchBar.generalWrapper()
     private let label = UILabel.title("Заголовок")
     private let tableView = UITableView.ToDoList()
-    private var tasks: [Task] = [
-        Task(title: "Купить молоко", note: "Выделить время для работы над проектом на работе. Сфокусироваться на выполнении важных задач а еще больше текста", date: makeDate("11.04.24"), isDone: false),
-        Task(title: "Позвонить бабушке", note: nil, date: makeDate("11.04.24"), isDone: true),
-        Task(title: "Сделать домашку", note: "Swift + UIKit", date: makeDate("11.04.24"), isDone: false)
-    ]
+    private var tasks: [Task] = []
 
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "BackgroundColor")
+        presenter?.viewDidLoad()
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -119,8 +122,15 @@ extension ToDoListView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tasks[indexPath.row].isDone.toggle()
+        tasks[indexPath.row].completed.toggle()
         tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+}
+
+extension ToDoListView: ToDoListViewProtocol {
+    func showTasks(_ tasks: [Task]?) {
+        self.tasks = tasks!
+        tableView.reloadData()
     }
 }
 
