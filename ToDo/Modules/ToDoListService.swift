@@ -1,14 +1,14 @@
 import Foundation
 protocol ToDoListServiceProtocol {
-    func getTasksFromJSON() -> [Task]?
+    func getTasksFromJSON() -> [Task]
     func setTasksToJSON()
 }
 
 final class ToDoListService: ToDoListServiceProtocol {
-    func getTasksFromJSON() -> [Task]? {
+    func getTasksFromJSON() -> [Task] {
         guard let url = Bundle.main.url(forResource: "todos", withExtension: "json") else {
             print("File isnt exist todos.json")
-            return nil
+            return []
         }
         
         do {
@@ -18,7 +18,7 @@ final class ToDoListService: ToDoListServiceProtocol {
             return taskList.todos
         } catch {
             print("Decode error")
-            return nil
+            return []
         }
     }
     

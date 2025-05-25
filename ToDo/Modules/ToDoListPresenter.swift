@@ -20,7 +20,7 @@ final class ToDoListPresenter: ToDoListPresenterProtocol {
     }
     
     func viewDidLoad() {
-        interactor.loadTask()
+        interactor.loadTasks()
     }
     
     func didSelectTask(at index: Int) {
@@ -29,7 +29,7 @@ final class ToDoListPresenter: ToDoListPresenterProtocol {
 }
 
 extension ToDoListPresenter: ToDoListInteractorOutputProtocol {
-    func didLoadTask(_ tasks: [Task]?) {
+    func didLoadTasks(_ tasks: [Task]?) {
         view?.showTasks(tasks)
     }
     
