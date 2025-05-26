@@ -12,7 +12,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         self.window = window
         
-        window.rootViewController = ToDoListRouter.createModule()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        window.rootViewController = ToDoListBuilder.build(context: context)
         
         window.makeKeyAndVisible()
     }

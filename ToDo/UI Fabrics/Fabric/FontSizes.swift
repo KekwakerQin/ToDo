@@ -1,7 +1,7 @@
-//
-//  Untitled.swift
-//  ToDo
-//
-//  Created by Qin Chingis on 5/26/25.
-//
+import CoreGraphics
 
+enum FontSize: CGFloat {
+    case title = 38
+    case body = 18
+    case low = 14
+}

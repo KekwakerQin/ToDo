@@ -1,5 +1,6 @@
 import UIKit
 
+// Базовый вид таблицы (можно расширить просто)
 extension UITableView {
     static func ToDoList() -> UITableView {
         let tv = UITableView()
@@ -11,6 +12,7 @@ extension UITableView {
     }
 }
 
+// Ячейка
 class TaskCell: UITableViewCell {
     let checkBox = UIImageView()
     let titleLabel = UILabel.body(nil)
@@ -50,9 +52,9 @@ class TaskCell: UITableViewCell {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             checkBox.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            checkBox.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            checkBox.widthAnchor.constraint(equalToConstant: 24),
-            checkBox.heightAnchor.constraint(equalToConstant: 24),
+            checkBox.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            checkBox.widthAnchor.constraint(equalToConstant: 34),
+            checkBox.heightAnchor.constraint(equalToConstant: 34),
             
             stack.leadingAnchor.constraint(equalTo: checkBox.trailingAnchor, constant: 12),
             stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
@@ -62,32 +64,41 @@ class TaskCell: UITableViewCell {
     }
     
     func configure(with task: Task) {
+        titleLabel.attributedText = nil
+        noteLabel.attributedText = nil
+        
+        titleLabel.textColor = .label
+        noteLabel.textColor = .secondaryLabel
+        dateLabel.textColor = .lightGray
+        
         titleLabel.text = task.title
         noteLabel.text = task.todo
-        
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "dd/MM/yy"
-//        dateLabel.text = formatter.string(from: task.date)
         dateLabel.text = task.date
         
         if task.completed {
             checkBox.image = UIImage(systemName: "checkmark.circle.fill")
             checkBox.tintColor = .systemYellow
             
-            let attributedTitle = NSAttributedString(string: task.title, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue, .foregroundColor: UIColor.gray])
-            let attributedNote = NSAttributedString(string: task.todo ?? "", attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue, .foregroundColor: UIColor.gray])
-            titleLabel.attributedText = attributedTitle
-            noteLabel.attributedText = attributedNote
+            titleLabel.attributedText = NSAttributedString(
+                string: task.title,
+                attributes: [
+                    .strikethroughStyle: NSUnderlineStyle.single.rawValue,
+                    .foregroundColor: UIColor.gray
+                ]
+            )
+            
+            noteLabel.attributedText = NSAttributedString(
+                string: task.todo ?? "",
+                attributes: [
+                    .strikethroughStyle: NSUnderlineStyle.single.rawValue,
+                    .foregroundColor: UIColor.gray
+                ]
+            )
+            
             dateLabel.textColor = .gray
         } else {
             checkBox.image = UIImage(systemName: "circle")
             checkBox.tintColor = .gray
-
-            titleLabel.attributedText = nil
-            noteLabel.attributedText = nil
-            titleLabel.text = task.title
-            noteLabel.text = task.todo
-            dateLabel.textColor = .lightGray
         }
     }
 }

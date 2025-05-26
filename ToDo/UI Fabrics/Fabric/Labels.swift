@@ -1,12 +1,7 @@
 import UIKit
 
-enum FontSize: CGFloat {
-    case title = 34
-    case body = 16
-    case low = 12
-}
-
 extension UILabel {
+    // Для большого текста
     static func title(_ text: String?) -> UILabel {
         let label = UILabel()
         
@@ -18,6 +13,7 @@ extension UILabel {
         return label
     }
     
+    // Основное содержание
     static func body(_ text: String?) -> UILabel {
         let label = UILabel()
         
@@ -29,6 +25,7 @@ extension UILabel {
         return label
     }
     
+    // Маленький текст
     static func low(_ text: String?) -> UILabel {
         let label = UILabel()
         
@@ -40,3 +37,4 @@ extension UILabel {
         return label
     }
 }
+

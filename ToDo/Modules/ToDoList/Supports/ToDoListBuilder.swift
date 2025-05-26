@@ -6,13 +6,14 @@ final class ToDoListBuilder {
         let coreDataService = CoreDataService(context: context)
         let service = ToDoListService(coreDataService: coreDataService)
         let interactor = ToDoListInteractor(service: service)
-        let view = ToDoListView()
-        let router = ToDoListRouter()
+        let view = ToDoListViewController()
+        let router = ToDoListRouter(context: context)
         let presenter = ToDoListPresenter(view: view, interactor: interactor, router: router)
         
         view.presenter = presenter
+        view.bottomBar.presenter = presenter
         interactor.output = presenter
         
-        return view
+        return UINavigationController(rootViewController: view)
     }
 }

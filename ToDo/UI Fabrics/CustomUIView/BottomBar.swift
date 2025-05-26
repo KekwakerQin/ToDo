@@ -1,8 +1,10 @@
 import UIKit
 
+// Кастомный бар снизу (словно в Navigator)
 final class BottomBarView: UIView {
-    private let taskCountLabel = UILabel()
-    private let addButton = UIButton.defaultButton(systemNameImage: "square.and.pencil")
+    private let taskCountLabel = UILabel.low("0 Задач")
+    private let addButton = UIButton(type: .system)
+    var presenter: ToDoListPresenterProtocol?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -17,11 +19,11 @@ final class BottomBarView: UIView {
     private func setup() {
         backgroundColor = UIColor(named: "BackgroundColor")
         
-        taskCountLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        taskCountLabel.textColor = .white
-        taskCountLabel.text = "0 Задач"
-
-        addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        addButton.tintColor = .yellow
+        addButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+        
+        addButton.imageView?.contentMode = .scaleAspectFill
+        addButton.addTarget(self, action: #selector(createButtonTapped), for: .touchUpInside)
 
         addSubview(taskCountLabel)
         addSubview(addButton)
@@ -30,22 +32,17 @@ final class BottomBarView: UIView {
         addButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            taskCountLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            taskCountLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            taskCountLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30),
+            taskCountLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
 
-            addButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            addButton.widthAnchor.constraint(equalToConstant: 28),
-            addButton.heightAnchor.constraint(equalToConstant: 28)
+            addButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30),
+            addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            addButton.widthAnchor.constraint(equalToConstant: 50),
+            addButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 
-    func setTaskCount(_ count: Int) {
-        taskCountLabel.text = "\(count) Задач"
-    }
-
-    @objc private func addButtonTapped() {
-        // Возможно, через делегат или замыкание
-        print("Add tapped")
+    @objc private func createButtonTapped() {
+        presenter?.didTapCreateButton()
     }
 }

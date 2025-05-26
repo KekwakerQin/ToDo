@@ -1,19 +1,19 @@
 import UIKit
 
-protocol ToDoListViewProtocol: AnyObject {
+protocol ToDoListViewControllerProtocol: AnyObject {
     func showTasks(_ tasks: [Task]?)
+    func reloadRow(at index: Int)
 }
 
-class ToDoListView: UIViewController {
+class ToDoListViewController: UIViewController {
     
     // MARK: - Components
     
     var presenter: ToDoListPresenterProtocol?
     
-    private let taskCountLabel = UILabel.low("0 Задач")
     private let searchBar = UISearchBar.generalWrapper()
     var searchTimer: Timer?
-    private let label = UILabel.title("Заголовок")
+    private let label = UILabel.title("Задачи")
     private let tableView = UITableView.ToDoList()
     private var tasks: [Task] = []
     
@@ -118,12 +118,13 @@ class ToDoListView: UIViewController {
         return previewController
     }
     
-    // MARK: bar manipulate
-    
-    func updateTaskCount(_ count: Int) {
-        bottomBar.setTaskCount(count)
+    func reloadRow(at index: Int) {
+        let indexPath = IndexPath(row: index, section: 0)
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
+    // MARK: bar manipulate
+
     private func addDismissKeyBoardGesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
         view.addGestureRecognizer(tap)
@@ -143,14 +144,13 @@ class ToDoListView: UIViewController {
 // MARK: - Extensions
 
 
-extension ToDoListView: UITableViewDelegate, UITableViewDataSource {
+extension ToDoListViewController: UITableViewDelegate, UITableViewDataSource {
 
-    // Количество задач
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
     }
 
-    // Отображение ячейки
+    // Конфигурация ячейки
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskCell else {
             return UITableViewCell()
@@ -159,20 +159,13 @@ extension ToDoListView: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-    // Обычный тап → переключаем completed
+    // Обработка тапа (почему-то двойной тап считывается)
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
-        var task = tasks[indexPath.row]
-        task.completed.toggle()
-
-        presenter?.updateTask(task)
-
-        tasks[indexPath.row] = task
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        presenter?.didSelectTask(at: indexPath.row)
     }
 
-    // Long press → контекстное меню
+    // Контекстное меню
     func tableView(_ tableView: UITableView,
                    contextMenuConfigurationForRowAt indexPath: IndexPath,
                    point: CGPoint) -> UIContextMenuConfiguration? {
@@ -199,27 +192,18 @@ extension ToDoListView: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ToDoListView: ToDoListViewProtocol {
+extension ToDoListViewController: ToDoListViewControllerProtocol {
     func showTasks(_ tasks: [Task]?) {
         self.tasks = tasks!
         tableView.reloadData()
     }
 }
 
-extension ToDoListView: UISearchBarDelegate {
+extension ToDoListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchTimer?.invalidate()
         searchTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] _ in
             self?.presenter?.searchTasks(with: searchText)
         }
     }
-}
-
-// MARK: - DELETE AFTER
-
-private func makeDate(_ string: String) -> Date {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "dd.MM.yy"
-    formatter.locale = Locale(identifier: "ru_RU")
-    return formatter.date(from: string) ?? Date()
 }
